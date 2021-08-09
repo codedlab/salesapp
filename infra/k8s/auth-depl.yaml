@@ -6,25 +6,31 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth 
-  template: 
+      app: auth
+  template:
     metadata:
-      labels: 
-        app: auth 
+      labels:
+        app: auth
     spec:
       containers:
-        - name: auth 
+        - name: auth
           image: ceejaysay/auth
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: auth-srv
-spec: 
+spec:
   selector:
-    app: auth 
+    app: auth
   ports:
     - name: auth
       protocol: TCP
-      port: 3000 
+      port: 3000
       targetPort: 3000
