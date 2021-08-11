@@ -1,5 +1,5 @@
 import express from "express";
-import { currentUser } from "../middlewares/current-users";
+import { currentUser } from "@saylab/common";
 
 const router = express.Router();
 
