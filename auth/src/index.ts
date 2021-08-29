@@ -3,12 +3,8 @@ import mongoose from "mongoose";
 import { app } from "./app";
 
 const start = async () => {
-<<<<<<< HEAD
-  console.log("starting auth again... ");
-  console.log("step 11");
-=======
-  console.log("starting auth again 2... ");
->>>>>>> 1be7b73ad2603ca5170efeb4dbf12b4b92e473c9
+  console.log("starting auth again 2...Drip... ");
+
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
   }
