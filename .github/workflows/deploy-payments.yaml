@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: deploy-payments
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "payments/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd payments && docker build -t ceejaysay/payments .
+      - run: docker login -u $DOCKER_USERNAME --password-stdin
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push ceejaysay/payments
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save salesapp
+      - run: kubectl rollout restart deployment payments-depl
