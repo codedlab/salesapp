@@ -5,7 +5,9 @@ import { OrderCancelledListener } from "./events/listeners/order-cancelled-liste
 import { OrderCreatedListener } from "./events/listeners/order-created-listener";
 
 const start = async () => {
+
   console.log("starting up services for payments..");
+
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
   }
@@ -48,7 +50,7 @@ const start = async () => {
 };
 
 app.listen(3000, () => {
-  console.log("auth running on http://localhost:3000 !!!");
+  console.log("auth running on http://localhost:3000 !!text-primary!");
 });
 
 start();
