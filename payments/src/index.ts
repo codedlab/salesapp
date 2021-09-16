@@ -49,7 +49,7 @@ const start = async () => {
 };
 
 app.listen(3000, () => {
-  console.log("auth running on http://localhost:3000 !!!");
+  console.log("auth running on http://localhost:3000 !!text-primary!");
 });
 
 start();
