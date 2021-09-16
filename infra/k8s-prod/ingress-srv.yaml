@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: www.sales-tickets-app-prod.xyz
+    - host: sales.dev
       http:
         paths:
           - path: /api/payments/?(.*)
