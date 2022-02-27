@@ -17,9 +17,10 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push ceejaysay/auth
-      - uses: digitalocean/action-doctl@v2
+      - uses: azure/k8s-set-context@v2
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save ticketapp
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+      - run: docker push ceejaysay/auth
+      - run: export DOCKER_CONFIG=$(cat ~/.docker/config.json | base64 -w 0)
       - run: kubectl rollout restart deployment auth-depl
