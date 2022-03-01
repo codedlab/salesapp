@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: sales.dev
+    - host: wwww.sales-tickets-app-prod.xyz
       http:
         paths:
           - path: /api/payments/?(.*)
