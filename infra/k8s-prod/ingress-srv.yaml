@@ -7,7 +7,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
-  ingressClassName: nginx
   rules:
     - host: wwww.sales-tickets-app-prod.xyz
       http:
@@ -47,6 +46,7 @@ spec:
                 name: client-srv
                 port: 
                   number: 3000
+  ingressClassName: nginx
 ---
 apiVersion: v1
 kind: Service
