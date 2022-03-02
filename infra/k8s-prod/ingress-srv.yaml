@@ -55,7 +55,7 @@ metadata:
     kubernetes.digitalocean.com/load-balancer-id: "a03a0f22e7a154dccab57bb3e236eca9"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-name: "a03a0f22e7a154dccab57bb3e236eca9"
+    service.beta.kubernetes.io/do-loadbalancer-name: "www.sales-tickets-app-prod.xyz"
   labels:
     helm.sh/chart: ingress-nginx-4.0.15
     app.kubernetes.io/name: ingress-nginx
