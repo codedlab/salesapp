@@ -49,13 +49,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ingress-nginx-controller
-  namespace: ingress-nginx
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-name: "www.sales-tickets-app-prod.xyz"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "www.sales-tickets-app-prod.xyz"
+    # service.beta.kubernetes.io/do-loadbalancer-name: "www.sales-tickets-app-prod.xyz"
+    # service.beta.kubernetes.io/do-loadbalancer-hostname: "www.sales-tickets-app-prod.xyz"
   labels:
     helm.sh/chart: ingress-nginx-4.0.15
     app.kubernetes.io/name: ingress-nginx
