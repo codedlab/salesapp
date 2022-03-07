@@ -5,7 +5,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
-  loadBalancerIP: 161.35.247.189
   ingressClassName: nginx
   rules:
     - host: www.sales-tickets-app-prod.xyz
