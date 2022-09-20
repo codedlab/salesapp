@@ -16,8 +16,7 @@ const LandingPage = ({ currentUser, tickets }) => {
     );
   });
 
-  console.log(tickets);
-
+  console.log("tickets", tickets);
   return (
     <div>
       <h1>Just Another Ticket App - JATA!!!</h1>
