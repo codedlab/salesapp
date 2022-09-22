@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - run: cd payments && docker build -t ceejaysay/payments .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
@@ -25,7 +25,7 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: cd payments && docker build -t ${{ secrets.REGISTRY_NAME }}/payments .
-      - run: doctl registry login --expiry-seconds 1200
+      - run: doctl registry login
       - run: docker push ${{ secrets.REGISTRY_NAME }}/payments
       - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl rollout restart deployment -n payments-depl

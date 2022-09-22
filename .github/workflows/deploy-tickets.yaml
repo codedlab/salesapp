@@ -13,19 +13,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - run: cd tickets && docker build -t ceejaysay/tickets .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: docker push ceejaysay/tickets
-      - uses: actions/checkout@main
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: cd tickets && docker build -t ${{ secrets.REGISTRY_NAME }}/tickets .
-      - run: doctl registry login --expiry-seconds 1200
+      - run: doctl registry login
       - run: docker push ${{ secrets.REGISTRY_NAME }}/tickets
       - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl rollout restart deployment -n tickets-depl
