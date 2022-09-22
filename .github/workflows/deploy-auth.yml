@@ -23,6 +23,6 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: cd auth && docker build -t ${{ secrets.REGISTRY_NAME }}/auth .
       - run: doctl registry login --expiry-seconds 1200
-      - run: docker push -t ${{ secrets.REGISTRY_NAME }}/auth
+      - run: docker push ${{ secrets.REGISTRY_NAME }}/auth
       - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl rollout restart deployment auth-depl
