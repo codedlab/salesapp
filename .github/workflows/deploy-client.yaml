@@ -24,5 +24,5 @@ jobs:
       - run: cd client && docker build -t ${{ secrets.REGISTRY_NAME }}/client .
       - run: doctl registry login
       - run: docker push ${{ secrets.REGISTRY_NAME }}/client
-      - run: doctl kubernetes cluster kubeconfig save ticketing
+      - run: doctl kubernetes cluster kubeconfig save tickets
       - run: kubectl rollout restart deployment -n client-depl
