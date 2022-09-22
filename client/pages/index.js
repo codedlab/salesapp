@@ -19,7 +19,7 @@ const LandingPage = ({ currentUser, tickets }) => {
   console.log("tickets", tickets);
   return (
     <div>
-      <h1>Just Another Ticket App! </h1>
+      <h1>Just Another Ticket App!!! </h1>
       <table className="table">
         <thead>
           <tr>
