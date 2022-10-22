@@ -21,5 +21,8 @@ jobs:
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: cd auth && docker build -t ${{ secrets.REGISTRY_NAME }}/auth .
+      - run: doctl registry login
+      - run: docker push ${{ secrets.REGISTRY_NAME }}/auth
       - run: doctl kubernetes cluster kubeconfig save ticketing
-      - run: kubectl rollout restart deployment -n auth-depl
+      - run: kubectl rollout restart deployment auth-depl
