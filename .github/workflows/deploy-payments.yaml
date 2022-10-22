@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v3
       - run: cd payments && docker build -t ceejaysay/payments .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
