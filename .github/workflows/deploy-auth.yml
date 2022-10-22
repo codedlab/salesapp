@@ -24,5 +24,5 @@ jobs:
       - run: cd auth && docker build -t ${{ secrets.REGISTRY_NAME }}/auth .
       - run: doctl registry login
       - run: docker push ${{ secrets.REGISTRY_NAME }}/auth
-      - run: doctl kubernetes cluster kubeconfig save tickets
+      - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl rollout restart deployment auth-depl
