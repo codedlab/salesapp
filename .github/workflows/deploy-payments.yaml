@@ -25,7 +25,5 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: cd payments && docker build -t ${{ secrets.REGISTRY_NAME }}/payments .
-      - run: doctl registry login
-      - run: docker push ${{ secrets.REGISTRY_NAME }}/payments
       - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl rollout restart deployment -n payments-depl
