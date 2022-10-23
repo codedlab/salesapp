@@ -24,7 +24,5 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: cd orders && docker build -t ${{ secrets.REGISTRY_NAME }}/orders .
-      - run: doctl registry login
-      - run: docker push ${{ secrets.REGISTRY_NAME }}/orders
       - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl rollout restart deployment -n orders-depl
