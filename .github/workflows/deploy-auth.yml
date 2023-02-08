@@ -1,26 +1,30 @@
-name: deploy-auth
+# This is a basic workflow to help you get started with Actions final test
+
+name: deploy-tickets
 
 on:
   push:
     branches:
       - main
     paths:
-      - "auth/**"
+      - "tickets/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: cd auth && docker build -t ceejaysay/auth .
+      - run: cd tickets && docker build -t ceejaysay/tickets .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push ceejaysay/auth
+      - run: docker push ceejaysay/tickets
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: cd tickets && docker build -t ${{ secrets.REGISTRY_NAME }}/tickets .
+      - run: doctl registry login --expiry-seconds 1200
+      - run: docker push ${{ secrets.REGISTRY_NAME }}/tickets
       - run: doctl kubernetes cluster kubeconfig save ticketing
-      - run: kubectl rollout restart deployment -n auth-depl
-
+      - run: kubectl rollout restart deployment -n tickets-depl
