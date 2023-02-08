@@ -31,8 +31,8 @@
     "mongoose": "^5.13.5",
     "mongoose-update-if-current": "^1.4.0",
     "stripe": "^8.170.0",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3.5"
+    "ts-node-dev": "1.1.8",
+    "typescript": "4.3.5"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
