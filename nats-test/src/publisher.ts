@@ -8,7 +8,7 @@ const stan = nats.connect("ticketing", "abc", {
 });
 
 stan.on("connect", () => {
-  console.log("Publisher connected to NATS");
+  console.log("Publisher connected to NATSS");
   const publisher = new TicketCreatedPublisher(stan);
   try {
     publisher.publish({
